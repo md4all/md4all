@@ -1,0 +1,53 @@
+EXPERIMENT_NAME: 'eval-md4allDDa-50m-robotcar-test'
+
+SYSTEM:
+  BENCHMARK: False
+
+LOAD:
+  CHECKPOINT_PATH: '/mnt/code/md4all/checkpoints/md4allDDa_robotcar.ckpt'
+  SPLIT_FILES_PATH: '/mnt/data/robotcar/splits'
+
+DATASET:
+  DATAROOT: '/mnt/data/robotcar'
+  NAME: 'robotcar'
+  ORIGINAL_SIZE:
+    HEIGHT: 960
+    WIDTH: 1280
+  WEATHER:
+    VAL: ['day-clear', 'night-clear']
+    TEST: ['day-clear', 'night-clear']
+  AUGMENTATION:
+    CROP:
+      HEIGHT: 768
+      WIDTH: 1280
+    RESIZE:
+      WIDTH: 544
+    NORMALIZE:
+      MODE: 'Daytime'
+      DAYTIME:
+        DAY:
+          MEAN: 0.5758
+          STD: 0.319
+        NIGHT:
+          MEAN: 0.2471
+          STD: 0.2627
+
+EVALUATION:
+  BATCH_SIZE: 1
+  DEPTH:
+    MAX_DEPTH: 50.0
+  USE_VALIDATION_SET: False
+  SAVE:
+    QUANTITATIVE_RES_PATH: '/mnt/code/md4all/results/quantitative/robotcar/test'
+    #QUALITATIVE_RES_PATH: '/mnt/code/md4all/results/qualitative/robotcar/test/md4allDDa'
+    RGB: False
+    DEPTH:
+      GT: False
+
+LOSS:
+  PHOTOMETRIC:
+    WEIGHT: 0.0
+  SMOOTHNESS_WEIGHT: 0.0
+  VELOCITY_WEIGHT: 0.0
+  SUPERVISED:
+    WEIGHT: 1.0

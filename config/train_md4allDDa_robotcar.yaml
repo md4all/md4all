@@ -1,0 +1,46 @@
+EXPERIMENT_NAME: 'train-md4allDDa-robotcar'
+
+SAVE:
+  CHECKPOINT_PATH: 'log/checkpoints/md4allDDa_robotcar'
+
+LOAD:
+  DAY_NIGHT_TRANSLATION_PATH: '/mnt/data/robotcar/translated/night'
+  DAYTIME_TRANSLATION_TEACHER_PATH: '/mnt/code/md4all/checkpoints/baseline_teacher_robotcar.ckpt'
+  SPLIT_FILES_PATH: '/mnt/data/robotcar/splits'
+  FILTER_FILES_PATH: '/mnt/data/robotcar/filter'
+
+DATASET:
+  DATAROOT: '/mnt/data/robotcar'
+  NAME: 'robotcar'
+  ORIGINAL_SIZE:
+    HEIGHT: 960
+    WIDTH: 1280
+  WEATHER:
+    VAL: ['day-clear', 'night-clear']
+    TEST: ['day-clear', 'night-clear']
+  DROP_STATIC: True
+  AUGMENTATION:
+    CROP:
+      HEIGHT: 768
+      WIDTH: 1280
+    RESIZE:
+      WIDTH: 544
+    NORMALIZE:
+      MODE: 'Daytime'
+      DAYTIME:
+        DAY:
+          MEAN: 0.5758
+          STD: 0.319
+        NIGHT:
+          MEAN: 0.2471
+          STD: 0.2627
+    DAY_NIGHT_TRANSLATION:
+      PROBABILITY: 0.5
+
+LOSS:
+  PHOTOMETRIC:
+    WEIGHT: 0.0
+  SMOOTHNESS_WEIGHT: 0.0
+  VELOCITY_WEIGHT: 0.0
+  SUPERVISED:
+    WEIGHT: 1.0

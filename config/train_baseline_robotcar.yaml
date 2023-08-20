@@ -1,0 +1,25 @@
+EXPERIMENT_NAME: 'train-baseline-robotcar'
+
+SAVE:
+  CHECKPOINT_PATH: 'log/checkpoints/md4all_baseline_robotcar'
+  TOP_K: -1
+
+LOAD:
+  SPLIT_FILES_PATH: '/mnt/data/robotcar/splits'
+  FILTER_FILES_PATH: '/mnt/data/robotcar/filter'
+
+DATASET:
+  DATAROOT: '/mnt/data/robotcar'
+  NAME: 'robotcar'
+  ORIGINAL_SIZE:
+    HEIGHT: 960
+    WIDTH: 1280
+  WEATHER:
+    VAL: ['day-clear', 'night-clear']
+    TEST: ['day-clear', 'night-clear']
+  AUGMENTATION:
+    CROP:
+      HEIGHT: 768
+      WIDTH: 1280
+    RESIZE:
+      WIDTH: 544

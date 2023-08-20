@@ -1,0 +1,5 @@
+EXPERIMENT_NAME: 'train-baseline'
+
+SAVE:
+  CHECKPOINT_PATH: 'log/checkpoints/md4all_baseline'
+  TOP_K: -1

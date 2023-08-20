@@ -1,0 +1,27 @@
+EXPERIMENT_NAME: 'eval-md4allDDa-wo-daytime-norm-80m-nuscenes-test'
+
+SYSTEM:
+  BENCHMARK: False
+
+LOAD:
+  CHECKPOINT_PATH: '/mnt/code/md4all/checkpoints/md4allDDa_nuscenes.ckpt'
+
+DATASET:
+  DATAROOT: '/mnt/data/nuscenes'
+
+EVALUATION:
+  BATCH_SIZE: 1
+  USE_VALIDATION_SET: False
+  SAVE:
+    QUANTITATIVE_RES_PATH: '/mnt/code/md4all/results/quantitative/nuscenes/test'
+    RGB: False
+    DEPTH:
+      GT: False
+
+LOSS:
+  PHOTOMETRIC:
+    WEIGHT: 0.0
+  SMOOTHNESS_WEIGHT: 0.0
+  VELOCITY_WEIGHT: 0.0
+  SUPERVISED:
+    WEIGHT: 1.0
