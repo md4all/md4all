@@ -7,7 +7,7 @@ Authors: [Stefano Gasperini*](https://www.cs.cit.tum.de/camp/members/stefano-gas
 [Nassir Navab](https://www.cs.cit.tum.de/camp/members/cv-nassir-navab/nassir-navab/),
 and [Federico Tombari](https://federicotombari.github.io/)
 
-* equal contribution
+*equal contribution
 
 \[[Project Page](https://md4all.github.io/)\]
 \[[arXiv](https://arxiv.org/abs/2308.09711)\]
