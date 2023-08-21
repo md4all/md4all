@@ -82,8 +82,8 @@ Installation steps:
 ## Datasets:
 
 ### nuScenes:
-1. Download the nuScenes trainval dataset (v1.0) i.e. the 10 file blobs and the metadata from [here](https://www.nuscenes.org/nuscenes).
-2. Download the translated images from [here](https://forms.gle/31w2TvtTiVNyPb916).
+1. Download the nuScenes trainval dataset (v1.0) i.e. the 10 file blobs and the metadata from [here](https://www.nuscenes.org/nuscenes). Optionally, you can also download the nuScenes test set from the same location.
+2. Download the translated images and the 'train_samples_dynamic.json' file from [here](https://forms.gle/31w2TvtTiVNyPb916).
 3. Set everything up such that your file structure look similar to:
 <div style="text-align: center;"><img src="resources/nuscenes_file_tree.png" width=300 alt="nuScenes file tree"></div>
 <div style="text-align: center;">nuScenes file tree</div>
@@ -110,13 +110,14 @@ Installation steps:
      ```
 
 5. Precompute the ground truth depth data by projecting the point cloud of the lms front sensor to the images:
-    ```bash 
-    python data/robotcar/precompute_depth_gt.py --dataroot <PATH_TO_DATAROOT> --scenes 2014-12-09-13-21-02 2014-12-16-18-44-24 --mode test
-    ```
-   If the scene folders already contain the demosaiced and undistored images, use:
-    ```bash 
-    python data/robotcar/precompute_depth_gt.py --dataroot <PATH_TO_DATAROOT> --scenes 2014-12-09-13-21-02 2014-12-16-18-44-24 --mode test --images_preprocessed
-    ```
+   - Docker:
+     ```bash 
+     make docker-precompute-pointcloud-robotcar NAME=precompute-pointcloud-robotcar
+     ```
+   - Conda:
+     ```bash 
+     python data/robotcar/precompute_depth_gt.py --dataroot <PATH_TO_DATAROOT> --scenes 2014-12-09-13-21-02 2014-12-16-18-44-24 --mode val test
+     ```
 
 
 <br />
