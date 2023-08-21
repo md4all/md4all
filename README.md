@@ -30,7 +30,7 @@ This repository provides the PyTorch implementation for our self-supervised md4a
 --------------------------------------
 ## License
 
-This repository comes with a \[[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/)\].
+This repository comes with a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/).
 
 However, soon we will be able to provide **commercial licenses** too. Please reach out if you are interested.
 
