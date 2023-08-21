@@ -1,5 +1,5 @@
-# md4all
-Source code for the ICCV 2023 paper: [Robust Monocular Depth Estimation under Challenging Conditions](Todo)
+# md4all - ICCV 2023
+Source code for the paper: [Robust Monocular Depth Estimation under Challenging Conditions](https://arxiv.org/abs/2308.09711)
 
 Authors: [Stefano Gasperini*](https://www.cs.cit.tum.de/camp/members/stefano-gasperini/),
 [Nils Morbitzer*](https://www.linkedin.com/in/nils-morbitzer-7572a321b),
@@ -18,10 +18,7 @@ md4all is a simple and effective solution that works reliably under both adverse
 
 ![](resources/framework_dd.png)
 
-
-
 Please get in touch with Stefano Gasperini (stefano.gasperini@tum.de) or Nils Morbitzer (nils.morbitzer@tum.de) if you have any questions!
-
 
 This repository provides the PyTorch implementation for our self-supervised md4all model based on Monodepth2. Soon, we will add the code for the fully-supervised version based on AdaBins.
 
@@ -32,7 +29,7 @@ This repository provides the PyTorch implementation for our self-supervised md4a
 
 This repository comes with a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/).
 
-However, soon we will be able to provide **commercial licenses** too. Please reach out if you are interested.
+However, soon we will be able to provide **commercial licenses** too. Please reach out to us if you are interested.
 
 <br />
 
@@ -42,7 +39,7 @@ However, soon we will be able to provide **commercial licenses** too. Please rea
 This code was developed with Python3 (python3) with Cuda 11.3. All models were trained on a single NVIDIA RTX 3090 (or RTX 4090) GPU with 24GB of memory.
 
 Installation steps:
-- We recommend to use Docker to set up your environment for better reproducibility.
+- We recommend using Docker to set up your environment for better reproducibility.
   1. To make it as easy as possible, we provide a Makefile that needs to be changed at three locations:
     - l. 26: Change <USER_ID>:<GROUP_ID> to your user and group id.
     - l. 33: Change <PATH_TO_DATAROOT> to your host path of the data folder.
@@ -84,18 +81,18 @@ Installation steps:
 ### nuScenes:
 1. Download the nuScenes trainval dataset (v1.0) i.e. the 10 file blobs and the metadata from [here](https://www.nuscenes.org/nuscenes). Optionally, you can also download the nuScenes test set from the same location.
 2. Download the translated images and the 'train_samples_dynamic.json' file from [here](https://forms.gle/31w2TvtTiVNyPb916).
-3. Set everything up such that your file structure look similar to:
+3. Set everything up such that your file structure looks similar to:
 <div style="text-align: center;"><img src="resources/nuscenes_file_tree.png" width=300 alt="nuScenes file tree"></div>
 <div style="text-align: center;">nuScenes file tree</div>
 
 ### RobotCar:
-1. Download the recorded data of the left stereo camera and the front lms laser sensor for the following scenes:
+1. Download the recorded data of the left stereo camera and the front LMS laser sensor for the following scenes:
    - 2014/12/09 for day
    - 2014/12/16 for night
 
-2. Download the translated images, the computed poses and the split files from [here](https://forms.gle/31w2TvtTiVNyPb916).
+2. Download the translated images, the computed poses, and the split files from [here](https://forms.gle/31w2TvtTiVNyPb916).
 
-3. Set everything up such that your file structure look similar to:
+3. Set everything up such that your file structure looks similar to:
 <div style="text-align: center;"><img src="resources/robotcar_file_tree.png" width=300 alt="RobotCar file tree"></div>
 <div style="text-align: center;">RobotCar file tree</div>
 
@@ -195,7 +192,7 @@ To train a model e.g., the baseline (associated with its .yaml config file), run
 <br />
 
 --------------------------------------
-## Citation
+## BibTeX
 
 If you find our code useful for your research, please cite:
 ```
