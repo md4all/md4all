@@ -1,85 +1,79 @@
 # md4all
 Source code for the ICCV 2023 paper: [Robust Monocular Depth Estimation under Challenging Conditions](Todo)
 
-Authors: [Stefano Gasperini*](https://www.cs.cit.tum.de/camp/members/external-phd-students/stefano-gasperini/),
+Authors: [Stefano Gasperini*](https://www.cs.cit.tum.de/camp/members/stefano-gasperini/),
 [Nils Morbitzer*](https://www.linkedin.com/in/nils-morbitzer-7572a321b),
 [HyunJun Jung](https://www.cs.cit.tum.de/camp/members/hyunjun-jung/),
 [Nassir Navab](https://www.cs.cit.tum.de/camp/members/cv-nassir-navab/nassir-navab/),
 and [Federico Tombari](https://federicotombari.github.io/)
 
-*equal contribution
+* equal contribution
 
 \[[Project Page](https://md4all.github.io/)\]
-\[[arXiv](Todo)\]
+\[[arXiv](https://arxiv.org/abs/2308.09711)\]
 
 ![](resources/teaser.png)
 
-Our approach md4all is a simple and effective solution that works reliably under both adverse and ideal conditions and for different types of learning supervision. We achieve this by exploiting the already proven efficacy of existing architectures and losses under perfect settings. Therefore, we strive to provide valid training signals independently of what is given as input.
+md4all is a simple and effective solution that works reliably under both adverse and ideal conditions and for different types of learning supervision. We achieve this by exploiting the already proven efficacy of existing architectures and losses under perfect settings. Therefore, we strive to provide valid training signals independently of what is given as input.
 
 ![](resources/framework_dd.png)
 
 
 
-Please contact Stefano Gasperini (stefano.gasperini@tum.de) or Nils Morbitzer (nils.morbitzer@tum.de) if you have any questions!
+Please get in touch with Stefano Gasperini (stefano.gasperini@tum.de) or Nils Morbitzer (nils.morbitzer@tum.de) if you have any questions!
 
 
-We provide PyTorch code for the self-supervised monodepth2 using md4all and plan to upload it for the fully-supervised AdaBins as well.
-
+This repository provides the PyTorch implementation for our self-supervised md4all model based on Monodepth2. Soon, we will add the code for the fully-supervised version based on AdaBins.
 
 <br />
 
 --------------------------------------
-## Citation
+## License
 
-If you find our code useful for your research, please cite:
-```
-@inproceedings{gasperini_morbitzer2023md4all,
-  title={Robust Monocular Depth Estimation under Challenging Conditions},
-  author={Gasperini, Stefano and Morbitzer, Nils and Jung, HyunJun and Navab, Nassir and Tombari, Federico},
-  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},
-  year={2023}
-}
-```
+This repository comes with a \[[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/)\].
 
+However, soon we will be able to provide **commercial licenses** too. Please reach out if you are interested.
 
 <br />
 
 --------------------------------------
 ## Installation
 
-This code is developed with Python3 (python3) with Cuda 11.3. All models were trained on a single RTX3090 (or RTX4090) GPU with 24GB of memory:
-- We recommend to use Docker to set up the environment for better reproducibility.
+This code was developed with Python3 (python3) with Cuda 11.3. All models were trained on a single NVIDIA RTX 3090 (or RTX 4090) GPU with 24GB of memory.
+
+Installation steps:
+- We recommend to use Docker to set up your environment for better reproducibility.
   1. To make it as easy as possible, we provide a Makefile that needs to be changed at three locations:
     - l. 26: Change <USER_ID>:<GROUP_ID> to your user and group id.
     - l. 33: Change <PATH_TO_DATAROOT> to your host path of the data folder.
     - l. 34: Change <PATH_TO_MD4ALL> to your host path of the md4all code folder.
-     Then you can use the provided commands.
-  2. Change the directory to:
-     ```bash 
-     cd <PATH_TO_MD4ALL>
-     ```
+     Then you can run the commands below.
+  2. Change the directory:
+    ```bash 
+    cd <PATH_TO_MD4ALL>
+    ```
   3. Build the docker image:
-     ```bash 
-     make docker-build NAME=build
-     ```
+    ```bash 
+    make docker-build NAME=build
+    ```
 
-- Alternatively, you can also install the environment using Anaconda and pip:
+- If you do not want to use Docker, here are the installation steps with Anaconda and pip:
   1. Create a conda environment:  
-     ```bash 
-     conda create -n md4all python=<PYTHON_VERSION>
-     ```
+    ```bash 
+    conda create -n md4all python=<PYTHON_VERSION>
+    ```
   2. Activate the environment:
-     ```bash 
-     conda activate md4all
-     ```
-  3. Change the directory to:
-     ```bash 
-     cd <PATH_TO_MD4ALL>
-     ```
+    ```bash 
+    conda activate md4all
+    ```
+  3. Change the directory:
+    ```bash 
+    cd <PATH_TO_MD4ALL>
+    ```
   4. Install the requirements:
-     ```bash 
-     pip install -r requirements.txt
-     ```
+    ```bash 
+    pip install -r requirements.txt
+    ```
 
 
 <br />
@@ -88,9 +82,9 @@ This code is developed with Python3 (python3) with Cuda 11.3. All models were tr
 ## Datasets:
 
 ### nuScenes:
-1. Download the nuScenes trainval dataset (v1.0) i.e. the 10 file blobs and the metadata from [here](https://www.nuscenes.org/nuscenes). Optionally, you can also download the nuScenes test set from the same location.
-2. Download the translated images and the 'train_samples_dynamic.json' file from [here](https://md4all.github.io/).
-3. Set everything up such that your file structure look similar to this:
+1. Download the nuScenes trainval dataset (v1.0) i.e. the 10 file blobs and the metadata from [here](https://www.nuscenes.org/nuscenes).
+2. Download the translated images from [here](https://forms.gle/31w2TvtTiVNyPb916).
+3. Set everything up such that your file structure look similar to:
 <div style="text-align: center;"><img src="resources/nuscenes_file_tree.png" width=300 alt="nuScenes file tree"></div>
 <div style="text-align: center;">nuScenes file tree</div>
 
@@ -99,9 +93,9 @@ This code is developed with Python3 (python3) with Cuda 11.3. All models were tr
    - 2014/12/09 for day
    - 2014/12/16 for night
 
-2. Download the translated images, the computed poses and the split files from [here](https://md4all.github.io/).
+2. Download the translated images, the computed poses and the split files from [here](https://forms.gle/31w2TvtTiVNyPb916).
 
-3. Set everything up such that your file structure look similar to this:
+3. Set everything up such that your file structure look similar to:
 <div style="text-align: center;"><img src="resources/robotcar_file_tree.png" width=300 alt="RobotCar file tree"></div>
 <div style="text-align: center;">RobotCar file tree</div>
 
@@ -116,22 +110,21 @@ This code is developed with Python3 (python3) with Cuda 11.3. All models were tr
      ```
 
 5. Precompute the ground truth depth data by projecting the point cloud of the lms front sensor to the images:
-   - Docker:
-     ```bash 
-     make docker-precompute-pointcloud-robotcar NAME=precompute-pointcloud-robotcar
-     ```
-   - Conda:
-     ```bash 
-     python data/robotcar/precompute_depth_gt.py --dataroot <PATH_TO_DATAROOT> --scenes 2014-12-09-13-21-02 2014-12-16-18-44-24 --mode val test
-     ```
+    ```bash 
+    python data/robotcar/precompute_depth_gt.py --dataroot <PATH_TO_DATAROOT> --scenes 2014-12-09-13-21-02 2014-12-16-18-44-24 --mode test
+    ```
+   If the scene folders already contain the demosaiced and undistored images, use:
+    ```bash 
+    python data/robotcar/precompute_depth_gt.py --dataroot <PATH_TO_DATAROOT> --scenes 2014-12-09-13-21-02 2014-12-16-18-44-24 --mode test --images_preprocessed
+    ```
 
 
 <br />
 
 --------------------------------------
-## Evaluation of pre-trained models 
+## Evaluation and Pre-Trained Models 
 
-We provide the pre-trained models for md4allDDa on nuScenes and RobotCar [here](https://drive.google.com/drive/folders/1nylOZitf8P33vlq-TKEcGte0FCQQ1wR5?usp=sharing). Download and place them in the checkpoints folder. To evaluate the given pre-trained models (associated with its .yaml config file), run: 
+We provide the pre-trained models on md4all-DD for both nuScenes and RobotCar [here](https://drive.google.com/drive/folders/1nylOZitf8P33vlq-TKEcGte0FCQQ1wR5?usp=sharing). Download the files in the checkpoints folder. To evaluate the pre-trained models (associated with their respective .yaml config files), run the following commands:
 
 - nuScenes:
     - Docker:
@@ -153,13 +146,14 @@ We provide the pre-trained models for md4allDDa on nuScenes and RobotCar [here](
     python evaluation/evaluation_depth.py --config <PATH_TO_MD4ALL>/config/eval_md4allDDa_50m_robotcar_test.yaml
     ```
 
+The provided models and configuration files lead to the results of the tables in our paper.
 
 <br />
 
 --------------------------------------
 ## Training
 
-To train a model e.g. the baseline (associated with its .yaml config file), run: 
+To train a model e.g., the baseline (associated with its .yaml config file), run: 
 
 - nuScenes:
   - Docker: 
@@ -185,7 +179,7 @@ To train a model e.g. the baseline (associated with its .yaml config file), run:
 <br />
 
 --------------------------------------
-## Q&A
+## FAQ
 - Permission Denied error when running docker without sudo: To resolve the problem follow the steps [here](https://docs.docker.com/engine/install/linux-postinstall/).
 - ModuleNotFoundError: no module named Python Error => Make sure to update your PYTHONPATH accordingly:
   - Docker:
@@ -196,11 +190,25 @@ To train a model e.g. the baseline (associated with its .yaml config file), run:
     ```bash
     export PYTHONPATH="${PYTHONPATH}:/path/to/md4all"
     ```
-    
+
+<br />
+
+--------------------------------------
+## Citation
+
+If you find our code useful for your research, please cite:
+```
+@inproceedings{gasperini_morbitzer2023md4all,
+  title={Robust Monocular Depth Estimation under Challenging Conditions},
+  author={Gasperini, Stefano and Morbitzer, Nils and Jung, HyunJun and Navab, Nassir and Tombari, Federico},
+  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},
+  year={2023}
+}
+```
 
 <br />
 
 --------------------------------------
 ## Acknoledgements
 
-Our implementation is based on the [PackNet-SfM repository](https://github.com/TRI-ML/packnet-sfm) and follows their code structure. It also incorporates parts of the [Monodepth2 repository](https://github.com/nianticlabs/monodepth2). Thanks for their great contribution! :)
+Our implementation is based on the [PackNet-SfM repository](https://github.com/TRI-ML/packnet-sfm) and follows their code structure. It also incorporates parts of the [Monodepth2 repository](https://github.com/nianticlabs/monodepth2). We want to thank the authors for their great contribution! :)
