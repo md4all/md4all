@@ -11,6 +11,7 @@ and [Federico Tombari](https://federicotombari.github.io/)
 
 \[[Project Page](https://md4all.github.io/)\]
 \[[arXiv](https://arxiv.org/abs/2308.09711)\]
+\[[Translated Images](https://forms.gle/31w2TvtTiVNyPb916)\]
 
 ![](resources/teaser.png)
 
