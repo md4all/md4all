@@ -1,0 +1,12 @@
+numpy
+torch
+torchvision
+pytorch-lightning
+fvcore
+yacs
+matplotlib
+opencv-python
+pandas
+nuscenes-devkit
+tensorboard
+robotcar-dataset-sdk @ git+https://github.com/morbi25/robotcar-dataset-sdk

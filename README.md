@@ -47,31 +47,35 @@ Installation steps:
     - l. 34: Change <PATH_TO_MD4ALL> to your host path of the md4all code folder.
      Then you can run the commands below.
   2. Change the directory:
-    ```bash 
-    cd <PATH_TO_MD4ALL>
-    ```
+     ```bash 
+     cd <PATH_TO_MD4ALL>
+     ```
   3. Build the docker image:
-    ```bash 
-    make docker-build NAME=build
-    ```
+     ```bash 
+     make docker-build NAME=build
+     ```
 
 - If you do not want to use Docker, here are the installation steps with Anaconda and pip:
   1. Create a conda environment:  
-    ```bash 
-    conda create -n md4all python=<PYTHON_VERSION>
-    ```
+     ```bash 
+     conda create -n md4all python=<PYTHON_VERSION>
+     ```
   2. Activate the environment:
-    ```bash 
-    conda activate md4all
-    ```
+     ```bash 
+     conda activate md4all
+     ```
   3. Change the directory:
-    ```bash 
-    cd <PATH_TO_MD4ALL>
-    ```
+     ```bash 
+     cd <PATH_TO_MD4ALL>
+     ```
   4. Install the requirements:
-    ```bash 
-    pip install -r requirements.txt
-    ```
+     ```bash 
+     pip install -r requirements.txt
+     ```
+     Or with specific package versions:
+     ```bash 
+     pip install -r requirements_w_version.txt
+     ```
 
 
 <br />
