@@ -182,6 +182,31 @@ To train a model e.g., the baseline (associated with its .yaml config file), run
 <br />
 
 --------------------------------------
+## Prediction on custom images
+To predict the depth for custom images, you can use one of the commands below. Please remember that our models were trained on a single dataset so we provide no performance guarantees on the transfer to out-of-distribution data. This script is meant for simplifying quick tests.
+- nuScenes (using model trained on nuScenes):
+  - Docker (For Docker, you need to adapt the image path and output path written in the Makefile to customize the behavior of test_simple.py): 
+      ```bash
+      make docker-test-simple-md4allDDa-nuscenes NAME=test-simple-md4allDDa-nuscenes
+      ```
+  - Conda:
+    ```bash
+    python test_simple.py --config <PATH_TO_MD4ALL>/config/test_simple_md4allDDa_nuscenes.yaml --image_path <PATH_TO_MD4ALL>/resources/n015-2018-11-21-19-21-35+0800__CAM_FRONT__1542799608112460.jpg --output_path <PATH_TO_MD4ALL>/output
+    ```
+
+- RobotCar (using model trained on RobotCar):
+  - Docker (For Docker, you need to adapt the image path and output path written in the Makefile to customize the behavior of test_simple.py): 
+      ```bash
+      make docker-test-simple-md4allDDa-robotcar NAME=test-simple-md4allDDa-robotcar
+      ```
+  - Conda:
+    ```bash
+    python test_simple.py --config <PATH_TO_MD4ALL>/config/test_simple_md4allDDa_robotcar.yaml --image_path <PATH_TO_MD4ALL>/resources/1418756721422679.png --output_path <PATH_TO_MD4ALL>/output
+    ```
+
+<br />
+
+--------------------------------------
 ## FAQ
 - Permission Denied error when running docker without sudo: To resolve the problem follow the steps [here](https://docs.docker.com/engine/install/linux-postinstall/).
 - ModuleNotFoundError: no module named Python Error => Make sure to update your PYTHONPATH accordingly:
@@ -193,6 +218,7 @@ To train a model e.g., the baseline (associated with its .yaml config file), run
     ```bash
     export PYTHONPATH="${PYTHONPATH}:/path/to/md4all"
     ```
+- FileNotFoundError: [Errno 2] No such file or directory: '<PATH_TO_RESOURCE>' => If you use Conda you have to adapt the paths to the model checkpoint, dataset etc. according to your file system (as they are configured for Docker).
 
 <br />
 

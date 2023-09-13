@@ -184,6 +184,7 @@ class ToTensor:
 class NormalizeDynamic:
     def __init__(self, cfg):
         self.normalize_mode = cfg.DATASET.AUGMENTATION.NORMALIZE.MODE
+        assert self.normalize_mode in ['Dataset', 'Daytime', 'Image']
         if self.normalize_mode == 'Dataset':
             self.normalize = transforms.Normalize(mean=cfg.DATASET.AUGMENTATION.NORMALIZE.DATASET.MEAN,
                                                   std=cfg.DATASET.AUGMENTATION.NORMALIZE.DATASET.STD)
@@ -204,6 +205,7 @@ class NormalizeDynamic:
         if self.normalize_mode == 'Dataset':
             img_normalized = self.normalize(img)
         elif self.normalize_mode == 'Daytime':
+            assert daytime
             if len(img.shape) == 3:
                 img_normalized = self.normalize_daytime(img, daytime)
             else:

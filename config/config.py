@@ -127,7 +127,7 @@ _C.DATASET.AUGMENTATION.GAUSSIAN_BLUR.SIGMA = 2  # Sigma for blurring
 _C.DATASET.AUGMENTATION.GAUSSIAN_BLUR.SAMPLE_KEYS = ['color_aug', 'color_aug_pose']  # Apply gaussian blurring to
 
 _C.DATASET.AUGMENTATION.NORMALIZE = CN()
-_C.DATASET.AUGMENTATION.NORMALIZE.MODE = 'Dataset'  # Normalization type (e.g. Dataset, Daytime)
+_C.DATASET.AUGMENTATION.NORMALIZE.MODE = 'Dataset'  # Normalization type (Dataset, Daytime, Image) => Use Image mode if daytime is not known a priori instead of Dataset
 _C.DATASET.AUGMENTATION.NORMALIZE.DATASET = CN()
 _C.DATASET.AUGMENTATION.NORMALIZE.DATASET.MEAN = 0.45  # Dataset normalization mean
 _C.DATASET.AUGMENTATION.NORMALIZE.DATASET.STD = 0.225  # Dataset normalization std

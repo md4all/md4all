@@ -128,3 +128,12 @@ docker-eval-md4allDDa-50m-robotcar-test:
 docker-eval-md4allDDa-wo-daytime-norm-50m-robotcar-test:
 	NOW=${NOW} docker run ${DOCKER_OPTS} ${DOCKER_IMAGE} \
 	/bin/bash -c "export PYTHONPATH="${PYTHONPATH}:/mnt/code/md4all" && python evaluation/evaluate_depth.py --config /mnt/code/md4all/config/eval_md4allDDa_wo_daytime_norm_50m_robotcar_test.yaml"
+
+####################### Test simple #######################
+docker-test-simple-md4allDDa-nuscenes:
+	NOW=${NOW} docker run ${DOCKER_OPTS} ${DOCKER_IMAGE} \
+	/bin/bash -c "export PYTHONPATH="${PYTHONPATH}:/mnt/code/md4all" && python test_simple.py --config /mnt/code/md4all/config/test_simple_md4allDDa_nuscenes.yaml --image_path /mnt/code/md4all/resources/n015-2018-11-21-19-21-35+0800__CAM_FRONT__1542799608112460.jpg --output_path /mnt/code/md4all/output"
+
+docker-test-simple-md4allDDa-robotcar:
+	NOW=${NOW} docker run ${DOCKER_OPTS} ${DOCKER_IMAGE} \
+	/bin/bash -c "export PYTHONPATH="${PYTHONPATH}:/mnt/code/md4all" && python test_simple.py --config /mnt/code/md4all/config/test_simple_md4allDDa_robotcar.yaml --image_path /mnt/code/md4all/resources/1418756721422679.png --output_path /mnt/code/md4all/output"

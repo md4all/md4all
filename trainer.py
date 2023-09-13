@@ -2,6 +2,7 @@ import logging
 import time
 import os
 
+import numpy as np
 import torch
 import pytorch_lightning as pl
 import pandas as pd
@@ -12,6 +13,7 @@ from evaluation import evaluator
 from losses.TotalLoss import TotalLoss
 from models.depth_net import DepthNet
 from models.pose_net import PoseNet
+from utils.depth import inv2depth
 from utils.image import flip_lr
 from utils.pose import Pose
 from visualization.visualize import Visualizer
@@ -150,6 +152,31 @@ class Md4All(pl.LightningModule):
             df = pd.concat({k: pd.DataFrame(v).T for k, v in metrics.items()}, axis=0)
             console_logger.info(f"Saving evaluation metrics to csv file: {metrics_file}")
             df.to_csv(metrics_file)
+
+    def on_predict_start(self):
+        def check_path_and_create_dir(path):
+            assert path
+            if not os.path.isdir(path):
+                os.makedirs(path, exist_ok=True)
+
+        check_path_and_create_dir(self.evaluation_quantitative_res_path)
+        check_path_and_create_dir(self.evaluation_qualitative_res_path)
+
+    def predict_step(self, batch, batch_idx, dataloader_idx=0):
+        outputs = self.depth_model(batch[('color', 0)], batch.get('weather'))
+
+        # Save depth map
+        if self.evaluation_quantitative_res_path:
+            depths = inv2depth(outputs[('disp', 0, 0)]).cpu().numpy()
+            for j, depth in enumerate(depths):
+                filename = os.path.basename(batch[('filename', 0)][j]).split('.')[0]
+                np.save(os.path.join(self.evaluation_quantitative_res_path, f"{filename}_depth.npy"), depth)
+
+        # Save visualized depth map
+        if self.evaluation_qualitative_res_path:
+            self.visualizer.visualize_predict(batch, outputs)
+
+        return outputs
 
     def configure_optimizers(self):
         optimizer = optim.Adam([

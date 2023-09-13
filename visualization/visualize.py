@@ -80,6 +80,12 @@ class Visualizer:
                         depth_gt_raw = batch['depth_gt_raw']
                         self.visualize_depth_gt(img, depth_gt_raw[j], f"{filename}_depth_gt_raw.jpg")
 
+    def visualize_predict(self, batch, outputs):
+        inv_depths = outputs[('disp', 0, 0)]
+        for j, inv_depth in enumerate(inv_depths):
+            filename = os.path.basename(batch[('filename', 0)][j]).split('.')[0]
+            self.visualize_depth(inv_depth, filename)
+
     def tensorboard_add_images(self, images, logger, global_step):
         for k, imgs in images.items():
             logger.experiment.add_images(k, imgs, global_step)
