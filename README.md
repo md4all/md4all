@@ -127,7 +127,7 @@ Installation steps:
 --------------------------------------
 ## Evaluation and Pre-Trained Models 
 
-We provide the pre-trained models on md4all-DD for both nuScenes and RobotCar [here](https://drive.google.com/drive/folders/1nylOZitf8P33vlq-TKEcGte0FCQQ1wR5?usp=sharing). Download the files in the checkpoints folder. To evaluate the pre-trained models (associated with their respective .yaml config files), run the following commands:
+We provide the pre-trained models on md4all-DD for both nuScenes and RobotCar [here](https://drive.google.com/drive/folders/1nylOZitf8P33vlq-TKEcGte0FCQQ1wR5?usp=sharing). Download the files to the checkpoints folder. To evaluate the pre-trained models (associated with their respective .yaml config files), run the following commands:
 
 - nuScenes:
     - Docker:
@@ -204,6 +204,43 @@ To predict the depth for custom images, you can use one of the commands below. P
     python test_simple.py --config <PATH_TO_MD4ALL>/config/test_simple_md4allDDa_robotcar.yaml --image_path <PATH_TO_MD4ALL>/resources/1418756721422679.png --output_path <PATH_TO_MD4ALL>/output
     ```
 
+
+<br />
+
+--------------------------------------
+## Translation on custom images
+We provide the pre-trained ForkGAN models for both nuScenes (day-to-night, day-to-rain) and RobotCar (day-to-night) [here](https://drive.google.com/drive/folders/1nylOZitf8P33vlq-TKEcGte0FCQQ1wR5?usp=sharing). Download the ForkGAN folders (e.g. forkgan_nuscenes_day_night) to the checkpoints folder. To predict the translation for custom images, you can use one of the commands below. Please remember that our models were trained on a single dataset so we provide no performance guarantees on the transfer to out-of-distribution data. This script is meant for simplifying quick tests.
+- nuScenes day-to-night translations (using forkgan model trained on nuScenes day and night images):
+  - Docker (For Docker, you need to adapt the image path, checkpoint directory, and output path written in the Makefile to customize the behavior of translate_simple.py): 
+      ```bash
+      make docker-translate-simple-md4allDDa-nuscenes-day-night NAME=translate-simple-md4allDDa-nuscenes-day-night
+      ```
+  - Conda:
+    ```bash
+    python translate_simple.py --image_path <PATH_TO_MD4ALL>/resources/n008-2018-07-26-12-13-50-0400__CAM_FRONT__1532621809112404.jpg --checkpoint_dir <PATH_TO_MD4ALL>/checkpoints/forkgan_nuscenes_day_night --model_name forkgan_nuscenes_day_night --resize_height 320 --resize_width 576 --output_dir <PATH_TO_MD4ALL>/output
+    ```
+
+- nuScenes day-to-rain translations (using forkgan model trained on nuScenes clear and rainy day images):
+  - Docker (For Docker, you need to adapt the image path, checkpoint directory, and output path written in the Makefile to customize the behavior of translate_simple.py): 
+      ```bash
+      make docker-translate-simple-md4allDDa-nuscenes-day-rain NAME=translate-simple-md4allDDa-nuscenes-day-rain
+      ```
+  - Conda:
+    ```bash
+    python translate_simple.py --image_path <PATH_TO_MD4ALL>/resources/n008-2018-07-26-12-13-50-0400__CAM_FRONT__1532621809112404.jpg --checkpoint_dir <PATH_TO_MD4ALL>/checkpoints/forkgan_nuscenes_day_rain --model_name forkgan_nuscenes_day_rain --resize_height 320 --resize_width 576 --output_dir <PATH_TO_MD4ALL>/output
+    ```
+
+- RobotCar day-to-night translations (using forkgan model trained on RobotCar day and night images):
+  - Docker (For Docker, you need to adapt the image path, checkpoint directory and output path written in the Makefile to customize the behavior of translate_simple.py): 
+      ```bash
+      make docker-translate-simple-md4allDDa-robotcar-day-night NAME=translate-simple-md4allDDa-robotcar-day-night
+      ```
+  - Conda:
+    ```bash
+    python translate_simple.py --image_path <PATH_TO_MD4ALL>/resources/1418132504537582.png --checkpoint_dir <PATH_TO_MD4ALL>/checkpoints/forkgan_robotcar_day_night --model_name forkgan_robotcar_day_night --crop_height 768 --crop_width 1280 --resize_height 320 --resize_width 544 --output_dir <PATH_TO_MD4ALL>/output
+    ```
+
+
 <br />
 
 --------------------------------------
@@ -240,4 +277,8 @@ If you find our code useful for your research, please cite:
 --------------------------------------
 ## Acknoledgements
 
-Our implementation is based on the [PackNet-SfM repository](https://github.com/TRI-ML/packnet-sfm) and follows their code structure. It also incorporates parts of the [Monodepth2 repository](https://github.com/nianticlabs/monodepth2). We want to thank the authors for their great contribution! :)
+Our implementation is based on the [PackNet-SfM repository](https://github.com/TRI-ML/packnet-sfm) and follows their code structure. It also incorporates parts of the [Monodepth2 repository](https://github.com/nianticlabs/monodepth2).
+
+To perform day-to-adverse image translations, we used a [PyTorch implementation of ForkGAN](https://github.com/seawee1/ForkGAN-pytorch) (original implementation can be found [here](https://github.com/zhengziqiang/ForkGAN)).
+
+We want to thank the authors for their great contribution! :)

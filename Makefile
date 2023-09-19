@@ -137,3 +137,16 @@ docker-test-simple-md4allDDa-nuscenes:
 docker-test-simple-md4allDDa-robotcar:
 	NOW=${NOW} docker run ${DOCKER_OPTS} ${DOCKER_IMAGE} \
 	/bin/bash -c "export PYTHONPATH="${PYTHONPATH}:/mnt/code/md4all" && python test_simple.py --config /mnt/code/md4all/config/test_simple_md4allDDa_robotcar.yaml --image_path /mnt/code/md4all/resources/1418756721422679.png --output_path /mnt/code/md4all/output"
+
+####################### Translate simple #######################
+docker-translate-simple-md4allDDa-nuscenes-day-night:
+	NOW=${NOW} docker run ${DOCKER_OPTS} ${DOCKER_IMAGE} \
+	/bin/bash -c "export PYTHONPATH="${PYTHONPATH}:/mnt/code/md4all" && python translate_simple.py --image_path /mnt/code/md4all/resources/n008-2018-07-26-12-13-50-0400__CAM_FRONT__1532621809112404.jpg --checkpoint_dir /mnt/code/md4all/checkpoints/forkgan_nuscenes_day_night --model_name forkgan_nuscenes_day_night --resize_height 320 --resize_width 576 --output_dir /mnt/code/md4all/output"
+
+docker-translate-simple-md4allDDa-nuscenes-day-rain:
+	NOW=${NOW} docker run ${DOCKER_OPTS} ${DOCKER_IMAGE} \
+	/bin/bash -c "export PYTHONPATH="${PYTHONPATH}:/mnt/code/md4all" && python translate_simple.py --image_path /mnt/code/md4all/resources/n008-2018-07-26-12-13-50-0400__CAM_FRONT__1532621809112404.jpg --checkpoint_dir /mnt/code/md4all/checkpoints/forkgan_nuscenes_day_rain --model_name forkgan_nuscenes_day_rain --resize_height 320 --resize_width 576 --output_dir /mnt/code/md4all/output"
+
+docker-translate-simple-md4allDDa-robotcar-day-night:
+	NOW=${NOW} docker run ${DOCKER_OPTS} ${DOCKER_IMAGE} \
+	/bin/bash -c "export PYTHONPATH="${PYTHONPATH}:/mnt/code/md4all" && python translate_simple.py --image_path /mnt/code/md4all/resources/1418132504537582.png --checkpoint_dir /mnt/code/md4all/checkpoints/forkgan_robotcar_day_night --model_name forkgan_robotcar_day_night --crop_height 768 --crop_width 1280 --resize_height 320 --resize_width 544 --output_dir /mnt/code/md4all/output"
