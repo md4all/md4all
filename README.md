@@ -268,7 +268,8 @@ If you find our code useful for your research, please cite:
   title={Robust Monocular Depth Estimation under Challenging Conditions},
   author={Gasperini, Stefano and Morbitzer, Nils and Jung, HyunJun and Navab, Nassir and Tombari, Federico},
   booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},
-  year={2023}
+  year={2023},
+  pages={8177-8186}
 }
 ```
 
