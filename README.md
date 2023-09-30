@@ -10,7 +10,7 @@ and [Federico Tombari](https://federicotombari.github.io/)
 *equal contribution
 
 \[[Project Page](https://md4all.github.io/)\]
-\[[ICCV Paper]([https://md4all.github.io/](https://openaccess.thecvf.com/content/ICCV2023/html/Gasperini_Robust_Monocular_Depth_Estimation_under_Challenging_Conditions_ICCV_2023_paper.html))\]
+\[[ICCV Paper](https://openaccess.thecvf.com/content/ICCV2023/html/Gasperini_Robust_Monocular_Depth_Estimation_under_Challenging_Conditions_ICCV_2023_paper.html)\]
 \[[arXiv](https://arxiv.org/abs/2308.09711)\]
 \[[Translated Images](https://forms.gle/31w2TvtTiVNyPb916)\]
 
