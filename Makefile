@@ -108,6 +108,10 @@ docker-train-md4allDDa-robotcar:
 ####################### Evaluation #######################
 
 # nuScenes
+docker-eval-baseline-80m-nuscenes-val:
+	NOW=${NOW} docker run ${DOCKER_OPTS} ${DOCKER_IMAGE} \
+	/bin/bash -c "export PYTHONPATH="${PYTHONPATH}:/mnt/code/md4all" && python evaluation/evaluate_depth.py --config /mnt/code/md4all/config/eval_baseline_80m_nuscenes_val.yaml"
+
 docker-eval-md4allDDa-80m-nuscenes-val:
 	NOW=${NOW} docker run ${DOCKER_OPTS} ${DOCKER_IMAGE} \
 	/bin/bash -c "export PYTHONPATH="${PYTHONPATH}:/mnt/code/md4all" && python evaluation/evaluate_depth.py --config /mnt/code/md4all/config/eval_md4allDDa_80m_nuscenes_val.yaml"
@@ -121,6 +125,10 @@ docker-eval-md4allDDa-wo-daytime-norm-80m-nuscenes-test:
 	/bin/bash -c "export PYTHONPATH="${PYTHONPATH}:/mnt/code/md4all" && python evaluation/evaluate_depth.py --config /mnt/code/md4all/config/eval_md4allDDa_wo_daytime_norm_80m_nuscenes_test.yaml"
 
 # RobotCar
+docker-eval-baseline-50m-robotcar-test:
+	NOW=${NOW} docker run ${DOCKER_OPTS} ${DOCKER_IMAGE} \
+	/bin/bash -c "export PYTHONPATH="${PYTHONPATH}:/mnt/code/md4all" && python evaluation/evaluate_depth.py --config /mnt/code/md4all/config/eval_baseline_50m_robotcar_test.yaml"
+
 docker-eval-md4allDDa-50m-robotcar-test:
 	NOW=${NOW} docker run ${DOCKER_OPTS} ${DOCKER_IMAGE} \
 	/bin/bash -c "export PYTHONPATH="${PYTHONPATH}:/mnt/code/md4all" && python evaluation/evaluate_depth.py --config /mnt/code/md4all/config/eval_md4allDDa_50m_robotcar_test.yaml"

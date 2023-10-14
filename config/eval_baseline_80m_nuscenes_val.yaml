@@ -1,0 +1,15 @@
+EXPERIMENT_NAME: 'eval-baseline-80m-nuscenes-val'
+
+SYSTEM:
+  BENCHMARK: False
+
+LOAD:
+  CHECKPOINT_PATH: '/mnt/code/md4all/checkpoints/baseline_nuscenes.ckpt'
+
+DATASET:
+  DATAROOT: '/mnt/data/nuscenes'
+
+EVALUATION:
+  BATCH_SIZE: 1
+  SAVE:
+    QUANTITATIVE_RES_PATH: '/mnt/code/md4all/results/quantitative/nuscenes/val'
