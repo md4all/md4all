@@ -127,8 +127,7 @@ Installation steps:
 
 --------------------------------------
 ## Evaluation and Pre-Trained Models 
-
-We provide the pre-trained models on md4all-DD for both nuScenes and RobotCar [here](https://drive.google.com/drive/folders/1nylOZitf8P33vlq-TKEcGte0FCQQ1wR5?usp=sharing). Download the files to the checkpoints folder. To evaluate the pre-trained models (associated with their respective .yaml config files), run the following commands:
+We provide pre-trained models, namely md4allDD, the baseline used for knowledge distillation (for nuScenes not the same baseline as reported in Table 1 originating from an older code base version), and md2 for both nuScenes and RobotCar [here](https://drive.google.com/drive/folders/1nylOZitf8P33vlq-TKEcGte0FCQQ1wR5?usp=sharing). Download the files to the checkpoints folder. To evaluate the pre-trained models (associated with their respective .yaml config files), run the following commands:
 
 - nuScenes:
     - Docker:
@@ -137,7 +136,7 @@ We provide the pre-trained models on md4all-DD for both nuScenes and RobotCar [h
       ```
     - Conda:
       ```bash
-      python evaluation/evaluation_depth.py --config <PATH_TO_MD4ALL>/config/eval_md4allDDa_80m_nuscenes_val.yaml
+      python evaluation/evaluate_depth.py --config <PATH_TO_MD4ALL>/config/eval_md4allDDa_80m_nuscenes_val.yaml
       ```
 
 - RobotCar:
@@ -147,7 +146,7 @@ We provide the pre-trained models on md4all-DD for both nuScenes and RobotCar [h
     ```
   - Conda:
     ```bash
-    python evaluation/evaluation_depth.py --config <PATH_TO_MD4ALL>/config/eval_md4allDDa_50m_robotcar_test.yaml
+    python evaluation/evaluate_depth.py --config <PATH_TO_MD4ALL>/config/eval_md4allDDa_50m_robotcar_test.yaml
     ```
 
 The provided models and configuration files lead to the results of the tables in our paper.
