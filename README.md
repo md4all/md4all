@@ -10,9 +10,9 @@ and [Federico Tombari](https://federicotombari.github.io/)
 *equal contribution
 
 \[[Project Page](https://md4all.github.io/)\]
-\[[ICCV Paper](https://openaccess.thecvf.com/content/ICCV2023/html/Gasperini_Robust_Monocular_Depth_Estimation_under_Challenging_Conditions_ICCV_2023_paper.html)\]
+\[[ICCV Paper (CVF)](https://openaccess.thecvf.com/content/ICCV2023/html/Gasperini_Robust_Monocular_Depth_Estimation_under_Challenging_Conditions_ICCV_2023_paper.html)\]
 \[[arXiv](https://arxiv.org/abs/2308.09711)\]
-\[[Translated Images](https://forms.gle/31w2TvtTiVNyPb916)\]
+\[[Translated Images (Google Form)](https://forms.gle/31w2TvtTiVNyPb916)\]
 
 ![](resources/teaser.png)
 
@@ -31,7 +31,7 @@ This repository provides the PyTorch implementation for our self-supervised md4a
 
 Soon we will be able to provide **commercial licenses**. Please reach out to us if you are interested.
 
-In the meantime, this repository comes for non-commercial use with a [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) license. 
+In the meantime, this repository comes for non-commercial use with a [CC BY-NC-SA 4.0 (Creative Commons)](https://creativecommons.org/licenses/by-nc-sa/4.0/) license. 
 
 <br />
 
@@ -85,24 +85,29 @@ Installation steps:
 ## Datasets:
 
 ### nuScenes:
-1. Download the nuScenes trainval dataset (v1.0) i.e. the 10 file blobs and the metadata from [here](https://www.nuscenes.org/nuscenes). Optionally, you can also download the nuScenes test set from the same location.
-2. Download the translated images and the 'train_samples_dynamic.json' file from [here](https://forms.gle/31w2TvtTiVNyPb916).
+1. Download the nuScenes trainval dataset (v1.0) i.e. the 10 file blobs and the metadata from [here (nuScenes)](https://www.nuscenes.org/nuscenes). Optionally, you can also download the nuScenes test set from the same location.
+   
+2. Download the translated images and the 'train_samples_dynamic.json' file from [here (our Google Form)](https://forms.gle/31w2TvtTiVNyPb916).
+   
 3. Set everything up such that your file structure looks similar to:
 <div style="text-align: center;"><img src="resources/nuscenes_file_tree.png" width=300 alt="nuScenes file tree"></div>
 <div style="text-align: center;">nuScenes file tree</div>
 
 ### RobotCar:
-1. Download the recorded data of the left stereo camera and the front LMS laser sensor for the following scenes:
+1. Download the recorded data of the left stereo camera and the front LMS laser sensor for the following scenes from [here (RobotCar website)](https://robotcar-dataset.robots.ox.ac.uk/datasets/):
    - 2014/12/09 for day
    - 2014/12/16 for night
 
-2. Download the translated images, the computed poses, and the split files from [here](https://forms.gle/31w2TvtTiVNyPb916).
+2. Download the translated images, the computed poses, and the split files from [here (our Google Form)](https://forms.gle/31w2TvtTiVNyPb916).
+The link takes to the same Google Form as for nuScenes, so if you already filled it up for nuScenes, no need to fill it up again for RobotCar as the download link is the same.
 
-3. Set everything up such that your file structure looks similar to:
+3. Download the RobotCar SDK from [here (GitHub repo)](https://github.com/ori-mrg/robotcar-dataset-sdk). The repository contains the extrinsics files.
+
+4. Set everything up such that your file structure looks similar to:
 <div style="text-align: center;"><img src="resources/robotcar_file_tree.png" width=300 alt="RobotCar file tree"></div>
 <div style="text-align: center;">RobotCar file tree</div>
 
-4. Undistort and demoisaic the images from the left stereo camera (Attention: Using those commands will replace the original distorted and mosaiced images of the left stereo camera):
+5. Undistort and demoisaic the images from the left stereo camera (Attention: Using those commands will replace the original distorted and mosaiced images of the left stereo camera):
    - Docker:
      ```bash 
      make docker-precompute-rgb-images-robotcar NAME=precompute-rgb-images-robotcar
@@ -112,7 +117,7 @@ Installation steps:
      python data/robotcar/precompute_rgb_images.py --dataroot <PATH_TO_DATAROOT> --scenes 2014-12-09-13-21-02 2014-12-16-18-44-24 --camera_sensor stereo/left --out_dir <PATH_TO_DATAROOT>
      ```
 
-5. Precompute the ground truth depth data by projecting the point cloud of the lms front sensor to the images:
+6. Precompute the ground truth depth data by projecting the point cloud of the lms front sensor to the images:
    - Docker:
      ```bash 
      make docker-precompute-pointcloud-robotcar NAME=precompute-pointcloud-robotcar
@@ -127,7 +132,7 @@ Installation steps:
 
 --------------------------------------
 ## Evaluation and Pre-Trained Models 
-We provide pre-trained models, namely md4allDD, the baseline used for knowledge distillation (for nuScenes not the same baseline as reported in Table 1 originating from an older code base version), and md2 for both nuScenes and RobotCar [here](https://drive.google.com/drive/folders/1nylOZitf8P33vlq-TKEcGte0FCQQ1wR5?usp=sharing). Download the files to the checkpoints folder. To evaluate the pre-trained models (associated with their respective .yaml config files), run the following commands:
+We provide pre-trained models, namely md4allDD, the baseline used for knowledge distillation (for nuScenes not the same baseline as reported in Table 1 originating from an older code base version), and md2 for both nuScenes and RobotCar [here (Google Drive)](https://drive.google.com/drive/folders/1nylOZitf8P33vlq-TKEcGte0FCQQ1wR5?usp=sharing). Download the files to the checkpoints folder. To evaluate the pre-trained models (associated with their respective .yaml config files), run the following commands:
 
 - nuScenes:
     - Docker:
@@ -209,7 +214,7 @@ To predict the depth for custom images, you can use one of the commands below. P
 
 --------------------------------------
 ## Translation on custom images
-We provide the pre-trained ForkGAN models for both nuScenes (day-to-night, day-to-rain) and RobotCar (day-to-night) [here](https://drive.google.com/drive/folders/1nylOZitf8P33vlq-TKEcGte0FCQQ1wR5?usp=sharing). Download the ForkGAN folders (e.g. forkgan_nuscenes_day_night) to the checkpoints folder. To predict the translation for custom images, you can use one of the commands below. Please remember that our models were trained on a single dataset so we provide no performance guarantees on the transfer to out-of-distribution data. This script is meant for simplifying quick tests.
+We provide the pre-trained ForkGAN models for both nuScenes (day-to-night, day-to-rain) and RobotCar (day-to-night) [here (Google Drive)](https://drive.google.com/drive/folders/1nylOZitf8P33vlq-TKEcGte0FCQQ1wR5?usp=sharing). Download the ForkGAN folders (e.g. forkgan_nuscenes_day_night) to the checkpoints folder. To predict the translation for custom images, you can use one of the commands below. Please remember that our models were trained on a single dataset so we provide no performance guarantees on the transfer to out-of-distribution data. This script is meant for simplifying quick tests.
 - nuScenes day-to-night translations (using forkgan model trained on nuScenes day and night images):
   - Docker (For Docker, you need to adapt the image path, checkpoint directory, and output path written in the Makefile to customize the behavior of translate_simple.py): 
       ```bash
@@ -245,7 +250,7 @@ We provide the pre-trained ForkGAN models for both nuScenes (day-to-night, day-t
 
 --------------------------------------
 ## FAQ
-- Permission Denied error when running docker without sudo: To resolve the problem follow the steps [here](https://docs.docker.com/engine/install/linux-postinstall/).
+- Permission Denied error when running docker without sudo: To resolve the problem follow the steps [here (Docker docs)](https://docs.docker.com/engine/install/linux-postinstall/).
 - ModuleNotFoundError: no module named Python Error => Make sure to update your PYTHONPATH accordingly:
   - Docker:
     ```bash
@@ -278,8 +283,8 @@ If you find our code useful for your research, please cite:
 --------------------------------------
 ## Acknoledgements
 
-Our implementation is based on the [PackNet-SfM repository](https://github.com/TRI-ML/packnet-sfm) and follows their code structure. It also incorporates parts of the [Monodepth2 repository](https://github.com/nianticlabs/monodepth2).
+Our implementation is based on the [PackNet-SfM repository (GitHub)](https://github.com/TRI-ML/packnet-sfm) and follows their code structure. It also incorporates parts of the [Monodepth2 repository (GitHub)](https://github.com/nianticlabs/monodepth2).
 
-To perform day-to-adverse image translations, we used a [PyTorch implementation of ForkGAN](https://github.com/seawee1/ForkGAN-pytorch) (original implementation can be found [here](https://github.com/zhengziqiang/ForkGAN)).
+To perform day-to-adverse image translations, we used a [PyTorch implementation of ForkGAN (GitHub)](https://github.com/seawee1/ForkGAN-pytorch) (original implementation can be found [here (GitHub)](https://github.com/zhengziqiang/ForkGAN)).
 
 We want to thank the authors for their great contribution! :)
