@@ -35,7 +35,7 @@ def interpolate_and_store_poses(timestamp, dataroot, poses_subdir):
 
     time.sleep(0.001)  # to visualize the progress
 
-    return {"timestamp": timestamp[0], "prev": timestamp[-1], "next": timestamp[0], "pose_to_prev": pose0m1.tolist(), "pose_to_next": pose0p1.tolist()}
+    return {"timestamp": timestamp[0], "pose_to_prev": pose0m1.tolist(), "pose_to_next": pose0p1.tolist()}
 
 
 def precompute_and_store_poses(timestamps_path, dataroot, poses_subdir):
